@@ -1,1 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VISION FOOT — Contrôle Replay</title>
 
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #090d14;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #252c38;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.status {
+    margin-top: 8px;
+    color: #39e75f;
+    font-size: 14px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 25px 18px;
+}
+
+.preview {
+    height: 230px;
+    border-radius: 18px;
+    background: #111722;
+    border: 2px solid #252c38;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.preview span {
+    opacity: .6;
+}
+
+.controls {
+    display: grid;
+    gap: 18px;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: 18px;
+    padding: 25px 15px;
+    color: white;
+    font-size: 24px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.replay {
+    background: #d90000;
+}
+
+.slow {
+    background: #174ea6;
+}
+
+button:active {
+    transform: scale(.98);
+}
+
+.settings {
+    margin-top: 25px;
+    background: #111722;
+    border-radius: 18px;
+    padding: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+.value {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.footer {
+    text-align: center;
+    opacity: .5;
+    font-size: 12px;
+    margin-top: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">⚽ VISION FOOT</div>
+    <div class="status">● SYSTÈME PRÊT</div>
+</header>
+
+<main class="container">
+
+    <div class="preview">
+        <span>APERÇU VIDÉO<br>
+        Flux vidéo en attente</span>
+    </div>
+
+    <div class="controls">
+
+        <button class="replay" onclick="replay()">
+            🔴 REPLAY
+        </button>
+
+        <button class="slow" onclick="ralenti()">
+            🐢 RALENTI
+        </button>
+
+    </div>
+
+    <div class="settings">
+
+        <label for="duration">
+            Durée du replay : <span id="durationText">10</span> secondes
+        </label>
+
+        <input
+            id="duration"
+            type="range"
+            min="1"
+            max="15"
+            value="10"
+            oninput="updateDuration(this.value)"
+        >
+
+        <div class="value">
+            <span id="speedText">50%</span>
+        </div>
+
+        <label for="speed">
+            Vitesse du ralenti
+        </label>
+
+        <input
+            id="speed"
+            type="range"
+            min="20"
+            max="100"
+            value="50"
+            oninput="updateSpeed(this.value)"
+        >
+
+    </div>
+
+    <div class="footer">
+        VISION FOOT — Panneau de contrôle
+    </div>
+
+</main>
+
+<script>
+
+let duration = 10;
+let speed = 50;
+
+function updateDuration(value) {
+    duration = value;
+    document.getElementById("durationText").textContent = value;
+}
+
+function updateSpeed(value) {
+    speed = value;
+    document.getElementById("speedText").textContent = value + "%";
+}
+
+function replay() {
+    alert(
+        "🔴 REPLAY\n\n" +
+        "Durée sélectionnée : " +
+        duration +
+        " secondes\n\n" +
+        "Moteur vidéo en attente."
+    );
+}
+
+function ralenti() {
+    alert(
+        "🐢 RALENTI\n\n" +
+        "Replay : " +
+        duration +
+        " secondes\n" +
+        "Vitesse : " +
+        speed +
+        "%\n\n" +
+        "Moteur vidéo en attente."
+    );
+}
+
+</script>
+
+</body>
+</html>
